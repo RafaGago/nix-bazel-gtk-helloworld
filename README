@@ -1,0 +1,5 @@
+Just an experiment to test Tweag's integration of NIX into Bazel:
+
+https://github.com/tweag/rules_nixpkgs
+
+It requires to have Bazel and the NIX package manager installed locally.
