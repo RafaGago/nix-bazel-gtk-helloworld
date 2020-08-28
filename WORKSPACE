@@ -65,11 +65,11 @@ cc_library(
 )
 
 # I don't use the libraries directly, letting NIX solve this.
-#cc_library(
-#    name = "gio-so",
-#    srcs = glob(["lib/libgio*.so"], allow_empty = False),
-#)
-#
+cc_library(
+    name = "gio-so",
+    srcs = glob(["lib/libgio*.so"], allow_empty = False),
+)
+
 #cc_library(
 #    name = "glib-so",
 #    srcs = glob(["lib/libglib*.so"], allow_empty = False),
@@ -81,10 +81,10 @@ cc_library(
 #    srcs = glob(["lib/libgmodule*.so"], allow_empty = False),
 #)
 #
-#cc_library(
-#    name = "gobject-so",
-#    srcs = glob(["lib/libgobject*.so"], allow_empty = False),
-#)
+cc_library(
+    name = "gobject-so",
+    srcs = glob(["lib/libgobject*.so"], allow_empty = False),
+)
 #
 #cc_library(
 #    name = "gthread-so",
@@ -171,7 +171,7 @@ nixpkgs_package(
     build_file_content = GDK_PIXBUF_DEV_BUILD,
 )
 
-# gdk pixbuf headers required from GTK
+# atk headers required from GTK
 ATK_DEV_BUILD = '''
 load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
@@ -188,7 +188,6 @@ nixpkgs_package(
     repositories = { "nixpkgs": "@nixpkgs//:default.nix" },
     build_file_content = ATK_DEV_BUILD,
 )
-
 
 GTK3_X11_DEV_BUILD = '''
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -208,6 +207,8 @@ cc_library(
         "@cairo.dev//:includes",
         "@gdk-pixbuf.dev//:includes",
         "@atk.dev//:includes",
+        "@glib.out//:gio-so",
+        "@glib.out//:gobject-so",
     ],
 )
 '''
