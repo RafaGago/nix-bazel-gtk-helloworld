@@ -31,6 +31,8 @@ nixpkgs_git_repository(
     sha256 = "f21ca8bc4c8f848a351232e09f3a58d280c05323173a78a5a6013937fb05c6fe"
 )
 
+nixpkgs_cc_configure(repository = "@nixpkgs")
+
 # Glib headers required from GTK
 GLIB_DEV_BUILD = '''
 load("@rules_cc//cc:defs.bzl", "cc_library")
